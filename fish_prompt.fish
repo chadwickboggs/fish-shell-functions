@@ -1,5 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
-	
+
 	set -l last_status $status
 
 	# Just calculate these once, to save a few cycles when displaying the prompt
@@ -38,6 +38,7 @@ function fish_prompt --description 'Write out the prompt'
 	end
 
 	set -l prompt_status
+
 	if test $last_status -ne 0
 		set prompt_status "$__fish_prompt_status ($last_status)$__fish_prompt_normal"
 	end
@@ -45,5 +46,8 @@ function fish_prompt --description 'Write out the prompt'
 	set -l now_utc (date -u +%Y%m%d%H%M)
 
 	echo
-	echo -n -s "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ':' "$__fish_prompt_cwd" (prompt_pwd) (__fish_git_prompt) "$__fish_prompt_normal" ' [' "$now_utc" ']' "$prompt_status" " $delim" ' '
+	echo -n -s "$__fish_prompt_user"
+	echo -n -s "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ':' "$__fish_prompt_cwd"
+	echo -n -s (prompt_pwd) (__fish_git_prompt) "$__fish_prompt_normal" ' [' "$now_utc" ']' "$prompt_status"
+	echo -n -s " $delim "
 end
