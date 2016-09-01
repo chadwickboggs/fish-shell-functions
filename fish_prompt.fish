@@ -37,22 +37,25 @@ function fish_prompt --description 'Write out the prompt'
 
 	end
 
-	set -g prompt_status
+	set -g status_prompt ''
 	if test $last_status -ne 0
-		set -g prompt_status "$__fish_prompt_status [$last_status]$__fish_prompt_normal"
+		set -g status_prompt " [$last_status]"
 	end
 
-	set -g git_prompt (__fish_git_prompt)
-	if test $git_prompt -ne 0
-		set -g git_prompt (__fish_git_prompt)
-	end
+	#set -l now_utc (date -u +%Y%m%d%H%M)
 
-	set -l now_utc (date -u +%Y%m%d%H%M)
+	echo -s
 
-	echo
-	echo -n -s "$__fish_prompt_user"
-	echo -n -s "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ':' "$__fish_prompt_cwd"
-	echo -n -s (prompt_pwd) (set_color blue) "$git_prompt" (set_color cyan) "$prompt_status" "$__fish_prompt_normal"
-#	echo -n -s (prompt_pwd) "$git_prompt" "$__fish_prompt_normal" '[' "$now_utc" ']' "$prompt_status"
-	echo -n -s " $delim "
+	echo -n -s "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" 
+	
+	echo -n -s @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal"
+	
+	echo -n -s ':' "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal"
+
+	echo -n -s (set_color blue) (__fish_git_prompt) "$__fish_prompt_normal"
+
+	echo -n -s (set_color cyan) "$status_prompt" "$__fish_prompt_normal"
+
+	echo -n -s " $delim " "$__fish_prompt_normal"
+
 end
