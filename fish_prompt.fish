@@ -46,9 +46,9 @@ function fish_prompt --description 'Write out the prompt'
 
 	echo -s
 
-	echo -n -s "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" 
+	echo -n -s "$__fish_prompt_user" (set_color yellow) "$USER" "$__fish_prompt_normal" 
 	
-	echo -n -s @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal"
+	echo -n -s @ (set_color red) "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal"
 	
 	echo -n -s ':' "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal"
 
