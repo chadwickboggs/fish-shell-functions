@@ -46,7 +46,7 @@ function fish_prompt --description 'Write out the prompt'
 
 	echo -s
 
-	echo -n -s "[" (now) "]"
+	echo -n -s "[" (date -u +%Y%m%d%H%M%S) "]"
 
 	echo -n -s " $__fish_prompt_user" (set_color green) "$USER" "$__fish_prompt_normal" 
 	
